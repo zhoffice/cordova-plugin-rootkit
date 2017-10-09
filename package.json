@@ -1,0 +1,17 @@
+{
+  "name": "cordova-plugin-rootkit",
+  "version": "0.0.1",
+  "description": "",
+  "cordova": {
+    "id": "cordova-plugin-rootkit",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "zhoffice",
+  "license": "ISC"
+}
