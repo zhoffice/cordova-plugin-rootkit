@@ -13,6 +13,9 @@
       </feature>
     </config-file>
     <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+    <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
+      <application android:persistent="true"/>
+    </edit-config>
     <source-file src="src/android/RootKitPlugin.java" target-dir="src/com/cnwidsom/rootkit"/>
     <source-file src="src/android/ProcessUtils.java" target-dir="src/com/cnwidsom/rootkit"/>
     <source-file src="src/android/RootUtils.java" target-dir="src/com/cnwidsom/rootkit"/>
