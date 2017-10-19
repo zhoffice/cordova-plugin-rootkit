@@ -12,12 +12,16 @@
         <param name="onload" value="true"/>
       </feature>
     </config-file>
-    <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <!-- 在application标签中声明service组件,每个app拥有自己单独的定位service -->
+      <service android:name="com.cnwidsom.rootkit.ActivityMonitorService"></service>
+    </config-file>
     <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
       <application android:persistent="true"/>
     </edit-config>
     <source-file src="src/android/RootKitPlugin.java" target-dir="src/com/cnwidsom/rootkit"/>
     <source-file src="src/android/ProcessUtils.java" target-dir="src/com/cnwidsom/rootkit"/>
     <source-file src="src/android/RootUtils.java" target-dir="src/com/cnwidsom/rootkit"/>
+    <source-file src="src/android/ActivityMonitorService.java" target-dir="src/com/cnwidsom/rootkit"/>
   </platform>
 </plugin>

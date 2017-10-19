@@ -1,17 +1,42 @@
 {
-  "name": "cordova-plugin-rootkit",
-  "version": "0.0.1",
-  "description": "",
+  "_from": "git+https://github.com/zhoffice/cordova-plugin-rootkit.git",
+  "_id": "cordova-plugin-rootkit@0.0.1",
+  "_inBundle": false,
+  "_integrity": "sha1-ebFqIa0U715MMjMKOqIM/Dv9H5g=",
+  "_location": "/cordova-plugin-rootkit",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/zhoffice/cordova-plugin-rootkit.git",
+    "rawSpec": "https://github.com/zhoffice/cordova-plugin-rootkit.git",
+    "saveSpec": "git+https://github.com/zhoffice/cordova-plugin-rootkit.git",
+    "fetchSpec": "https://github.com/zhoffice/cordova-plugin-rootkit.git",
+    "gitCommittish": "master"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/zhoffice/cordova-plugin-rootkit.git#9f494f4e0c855107286efceb8f8d51fed2e9496c",
+  "_spec": "https://github.com/zhoffice/cordova-plugin-rootkit.git",
+  "_where": "D:\\GitProject\\bcia_monitor_app\\node_modules",
+  "author": {
+    "name": "zhoffice"
+  },
+  "bundleDependencies": false,
   "cordova": {
     "id": "cordova-plugin-rootkit",
     "platforms": [
       "android"
     ]
   },
+  "deprecated": false,
+  "description": "",
   "keywords": [
     "ecosystem:cordova",
     "cordova-android"
   ],
-  "author": "zhoffice",
-  "license": "ISC"
+  "license": "ISC",
+  "name": "cordova-plugin-rootkit",
+  "version": "0.0.1"
 }

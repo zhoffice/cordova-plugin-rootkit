@@ -1,5 +1,7 @@
 package com.cnwidsom.rootkit;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 
 import org.apache.cordova.CordovaPlugin;
@@ -22,6 +24,12 @@ public class RootKitPlugin extends CordovaPlugin {
     super.pluginInitialize();
   }
 
+  private boolean isActivityMonitorServiceRunning = false;
+
+  protected Activity getActivity() {
+    return this.cordova.getActivity();
+  }
+
   @Override
   public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
     if (action.equals("changeOomAdj")) {
@@ -41,16 +49,28 @@ public class RootKitPlugin extends CordovaPlugin {
         }
       }, new Date(), interval);
       return true;
+    } else if (action.equals("startMainActivityHolder")) {
+      startMainActivityHolder(args.getLong(0), callbackContext);
     }
     return false;
   }
 
   private void changeOomAdj(int adjNum, CallbackContext callbackContext) {
     try {
-      int pid = ProcessUtils.getProcessId(webView.getContext());
+      int pid = ProcessUtils.getProcessId(getActivity());
       callbackContext.success(ProcessUtils.setProcessOomAdj(pid, adjNum) ? 1 : 0);
     } catch (Exception ex) {
       callbackContext.error("Expected one non-empty string argument.");
+    }
+  }
+
+  private void startMainActivityHolder(long interval, CallbackContext callbackContext) {
+    if (!isActivityMonitorServiceRunning) {
+      Log.i(this.getClass().getName(), "Starting Activity Monitor service");
+      Intent intent = new Intent(getActivity(), ActivityMonitorService.class);
+      intent.putExtra("interval", interval);
+      getActivity().startService(intent);
+      isActivityMonitorServiceRunning = true;
     }
   }
 }

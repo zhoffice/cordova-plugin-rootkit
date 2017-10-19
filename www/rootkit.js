@@ -7,3 +7,7 @@ exports.changeOomAdj = function (adjNum, success, error) {
 exports.lockOomAdj = function (adjNum, interval, success, error) {
   exec(success, error, "rootkit", "lockOomAdj", [adjNum, interval]);
 }
+
+exports.startMainActivityHolder = function (success, error) {
+  exec(success, error, "rootkit", "startMainActivityHolder", []);
+}
