@@ -31,12 +31,15 @@ public class ActivityMonitorService extends Service {
       timer.scheduleAtFixedRate(new TimerTask() {
         @Override
         public void run() {
-          if (!RootUtils.isForeground(ActivityMonitorService.this, MainActivity.class.getName())) {
+          if (!RootUtils.isActivityAlive(ActivityMonitorService.this, MainActivity.class.getName())) {
+            Log.w(this.getClass().getName(), MainActivity.class.getName() + " is not Active.");
             Intent dialogIntent = new Intent(getBaseContext(), MainActivity.class);
             dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             getApplication().startActivity(dialogIntent);
+          } else {
+            Log.i(this.getClass().getName(), MainActivity.class.getName() + " is Active.");
           }
-          Log.e(this.getClass().getName(), "Running Check Loop.");
+
         }
       }, 0, interval);
     }
@@ -45,7 +48,7 @@ public class ActivityMonitorService extends Service {
   @Override
   public int onStartCommand(Intent intent, int flags, int startId) {
     //默认300秒检测一次
-    long interval = intent.getLongExtra("interval", 300000);
+    long interval = intent.getLongExtra("interval", 30000);
     startCheckLoop(interval);
     return START_STICKY;
   }

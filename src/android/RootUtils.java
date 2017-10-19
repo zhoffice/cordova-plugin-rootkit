@@ -78,4 +78,24 @@ public class RootUtils {
     }
     return false;
   }
+
+  /**
+   * 判断Activity是否活动
+   *
+   * @param context      一个context
+   * @param activityName 要判断Activity
+   * @return boolean
+   */
+  public static boolean isActivityAlive(Context context, String activityName) {
+    ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+    List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(100);
+    for (ActivityManager.RunningTaskInfo info : list) {
+      // 注意这里的 topActivity 包含 packageName和className，可以打印出来看看
+      if (info.topActivity.toString().equals(activityName) || info.baseActivity.toString().equals(activityName)) {
+        Log.i(RootUtils.class.getName(), info.topActivity.getPackageName() + " info.baseActivity.getPackageName()=" + info.baseActivity.getPackageName());
+        return true;
+      }
+    }
+    return false;
+  }
 }
