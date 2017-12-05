@@ -90,9 +90,13 @@ public class RootUtils {
     ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
     List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(100);
     for (ActivityManager.RunningTaskInfo info : list) {
+      Log.i(RootUtils.class.getName(), info.topActivity.getPackageName() + " info.topActivity=" + info.topActivity.getClassName() + " info.baseActivity.getPackageName()=" + info.baseActivity.getPackageName());
       // 注意这里的 topActivity 包含 packageName和className，可以打印出来看看
-      if (info.topActivity.toString().equals(activityName) || info.baseActivity.toString().equals(activityName)) {
-        Log.i(RootUtils.class.getName(), info.topActivity.getPackageName() + " info.baseActivity.getPackageName()=" + info.baseActivity.getPackageName());
+      if (info.topActivity.getClassName().equals(activityName)
+        || info.baseActivity.getClassName().equals(activityName)
+        || info.topActivity.toString().equals(activityName)
+        || info.baseActivity.toString().equals(activityName)) {
+//        Log.i(RootUtils.class.getName(), info.topActivity.getPackageName() + " info.baseActivity.getPackageName()=" + info.baseActivity.getPackageName());
         return true;
       }
     }
